@@ -1,0 +1,697 @@
+
+@import '_partials/_media-queries.scss';
+@import '_partials/_flexbox.scss';
+
+
+/*------------------------------------------------
+	GENERALS / DEFAULTS
+-------------------------------------------------*/
+
+$darkBlue: #2a3479;
+$yellow: #ffca07;
+$lightBlue: #009fe3;
+
+.karma *, .karma *:after, .karma *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+body {
+	font-family: Source Sans Pro, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	background: url(../images/bg-small.jpg) center 98px no-repeat;
+	background-color: #3c1a41;
+	padding-bottom: 100px;
+
+	@include bp700 {
+		background-image: url(../images/bg-med.jpg);
+	}
+
+	@include bp1000 {
+		background-image: url(../images/bg-large.jpg);
+		padding-bottom: 0;
+	}
+
+	@include bp1400 {
+		background-size: cover;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 1260px;
+	margin: 0 auto;
+
+	@include bp1000 {
+		padding: 0;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+
+
+/*------------------------------------------------
+	HEADER
+-------------------------------------------------*/
+
+header {
+	background: #fff;
+	text-align: center;
+	padding: 12px;
+	width: 100%;
+	height: 98px;
+}
+
+.content-logo {
+	text-align: center;
+	margin-top: 40px;
+	padding: 0 15px;
+}
+
+.share-btns {
+	clear: both;
+
+	a {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		color: #fff;
+		text-align: center;
+		width: 50%;
+		padding: 10px 0;
+		background: #3b5998;
+		font-size: 1.3em;
+		transition: .4s;
+		z-index: 200;
+	}
+
+	.fb {
+		background: #3b5998;
+		&:hover {
+			background: lighten(#3b5998, 5%);
+		}
+	}
+
+	.tweet {
+		left: 50%;
+		background: #1da1f2;
+		&:hover {
+			background: lighten(#1da1f2, 5%);
+		}
+	}
+
+	@include bp1000 {
+		a {
+			width: auto;
+			left: auto;
+			bottom: auto;
+			right: 0;
+			padding: 10px 0;
+			font-size: 1.5em;
+			width: 58px;
+		}
+
+		.fb {
+			top: 140px;
+		}
+
+		.tweet {
+			top: 200px;
+			left: auto;
+		}
+	}
+}
+
+
+
+/*------------------------------------------------
+	INTRO
+-------------------------------------------------*/
+
+.intro.slide {
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	margin: 25px auto;
+	font-size: 1.1em;
+	background: none;
+	box-shadow: none;
+	transition: .5s;
+
+	.container.container {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.bg {
+		padding: 20px;
+		background: rgba(#000, .4);
+		border-radius: 20px;
+		margin-top: 20px;
+	}
+
+	p {
+		text-shadow: 0 0 15px rgba(0,0,0,.4);
+		margin-bottom: 1em;
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	button {
+		background: $lightBlue;
+		padding: 18px 70px 18px 25px;
+		color: #fff;
+		border: none;
+		font: 300 1.35em Source Sans Pro;
+		border-radius: 10px;
+		margin-top: 30px;
+		position: relative;
+		width: 100%;
+		max-width: 320px;
+		text-align: left;
+		cursor: pointer;
+		transition: .4s;
+
+		&:after {
+			background: darken($lightBlue, 10%);
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			font: 1em FontAwesome;
+			content: "\f105";
+			padding: 20px 28px;
+			border-radius: 0 10px 10px 0;
+			transition: .4s;
+		}
+
+		&:hover {
+			background-color: lighten($lightBlue, 2%);
+			&:after {
+				background: darken($lightBlue, 7%);
+				padding: 20px 40px;
+			}
+		}
+
+		&:focus, &:active {
+			outline: none;
+		}
+	}
+
+	@include bp800 {
+		margin: 30px auto;
+
+		.bg {
+			margin-top: 20px;
+			padding: 40px;
+		}
+
+		button {
+			font-size: 1.55em;
+			margin-top: 38px;
+		}
+	}
+
+	@include bp1000 {
+		p {
+		}
+	}
+}
+
+
+
+/*------------------------------------------------
+	PROGRESS BAR
+-------------------------------------------------*/
+
+.progress {
+	width: 100%;
+	float: left;
+	padding: 0 15px;
+	display: none;
+	margin-top: 18px;
+	margin-bottom: 14px;
+	position: relative;
+	z-index: 400;
+
+	.container {
+		width: 100%;
+		max-width: 940px;
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.q-number {
+		background: $yellow;
+		color: #fff;
+		text-align: center;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		font-size: 2em;
+		font-weight: 900;
+		padding-top: 5px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+	}
+
+	.yin-yang {
+		float: right;
+		position: relative;
+		z-index: 10;
+		width: 50px;
+		height: 50px;
+	}
+
+	.bars {
+		width: calc(100% - 100px);
+		height: 15px;
+		background-color: #fff;
+		position: absolute;
+		top: 50%;
+		left: 50px;
+		transform: translateY(-50%);
+
+		span {
+			float: left;
+			width: 8.33%;
+			height: 15px;
+			border-right: 1px solid #ddd;
+			position: relative;
+
+			&:last-child { border-right: none; }
+
+			&.active {
+				border-right-color: darken($yellow, 10%);
+			}
+
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 0;
+				height: 15px;
+				background: $yellow;
+				transition: .5s;
+			}
+
+			&.active:before {
+				width: 100%;
+			}
+		}
+	}
+
+	@include bp800 {
+		.q-number {
+			width: 66px;
+			height: 66px;
+			font-size: 2.5em;
+			padding-top: 6px;
+
+			i {
+				display: block;
+				margin-top: 8px;
+			}
+		}
+
+		.yin-yang {
+			width: 66px;
+			height: 66px;
+		}
+	}
+}
+
+
+
+/*------------------------------------------------
+	SLIDES
+-------------------------------------------------*/
+
+.slides-wrap {
+	width: 100%;
+	padding: 0 15px;
+	float: left;
+
+	.container {
+		margin: 0 auto;
+		position: relative;
+		max-width: 890px;
+	}
+}
+
+.slide {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: -1;
+    transition: .5s .5s;
+    visibility: hidden;
+    padding-bottom: 100px;
+    text-align: center;
+
+    @include bp1200 {
+    	padding-bottom: 0;
+    }
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+}
+
+.slide-bg {
+	background: rgba(#000, .6);
+    box-shadow: 0 0 106px rgba(#000,.55);
+    float: left;
+    width: 100%;
+}
+
+.question {
+	position: relative;
+
+	img {
+		display: block;
+	}
+
+	.img-source {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		font-size: .75em;
+		color: #fff;
+		text-decoration: none;
+		padding: 3px 6px;
+		background: rgba(#fff,.3);
+		opacity: .7;
+		transition: .3s;
+
+		&:hover {
+			opacity: .9;
+		}
+
+		&.dark {
+			background: rgba(#000,.3);
+		}
+	}
+
+	p {
+		float: left;
+		width: 100%;
+		padding: 15px 20px;
+		background: rgba(#00b3ff, .7);
+		color: #fff;
+		text-align: center;
+		font-weight: 600;
+		font-size: 1.05em;
+	}
+
+	@include bp600 {
+		p {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			background: rgba($lightBlue, .6);
+			font-size: 1.3em;
+			padding: 25px 50px;
+		}
+	}
+
+	@include bp750 {
+		p {
+			padding: 25px 120px;
+			font-size: 1.55em;
+			line-height: 1.4;
+		}
+	}
+
+	@include bp850 {
+		p {
+			padding: 28px 165px;
+		}
+	}
+
+	@include bp1000 {
+		p {
+			font-size: 1.6em;
+		}
+	}
+}
+
+.answers {
+	padding: 10px;
+	float: left;
+	width: 100%;
+	text-align: left;
+
+	@include bp600 {
+		padding: 20px;
+	}
+
+	@include bp750 {
+		padding: 25px;
+	}
+
+	@include bp950 {
+		padding: 30px;
+	}
+}
+
+.answers li {
+	background: $lightBlue;
+	color: #fff;
+	padding: 15px 15px 15px 60px;
+	margin-bottom: 10px;
+	position: relative;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:before {
+		content: "\f096";
+		font: 1.5em FontAwesome;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		padding: 15px 10px 10px;
+		background: $yellow;
+		border-radius: 5px 0 0 5px;
+		@include flexbox;
+		@include align-items(center);
+		@include justify-content(center);
+		width: 43px;
+		text-align: center;
+	}
+
+	&.active:before {
+		content: "\f046";
+	}
+
+	&:hover {
+		background-color: lighten($lightBlue, 5%);
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@include bp750 {
+		font-size: 1.1em;
+		padding: 20px 20px 20px 70px;
+
+		&:before {
+			width: 53px;
+		}
+	}
+
+	@include bp850 {
+		padding-left: 75px;
+
+		&:before {
+			width: 58px;
+		}
+	}
+}
+
+.back {
+	border: none;
+	border-radius: 5px;
+	background-color: $darkBlue;
+	padding: 15px 15px;
+	color: #fff;
+	width: 130px;
+	margin: 25px auto;
+	font: 1.1em Source Sans Pro;
+	cursor: pointer;
+	transition: .4s;
+
+	&:active, &:focus {
+		outline: none;
+	}
+
+	&:hover {
+		background-color: lighten($darkBlue, 5%);
+	}
+
+	&:before {
+		content: "\f104";
+		font: 1em FontAwesome;
+		margin-right: 15px;
+	}
+}
+
+
+
+/*------------------------------------------------
+	RESULTS
+-------------------------------------------------*/
+
+.result {
+	img {
+		width: 100%;
+	}
+
+	.result-title {
+		font-size: 2em;
+
+		@include bp800 {
+			font-size: 2.5em;
+		}
+
+		@include bp1000 {
+			font-size: 2.8em;
+		}
+	}
+}
+
+.result-copy-wrap {
+	padding: 30px;
+	color: #fff;
+	font-size: 1.1em;
+	float: left;
+	width: 100%;
+
+	p {
+		line-height: 1.4;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	@include bp800 {
+		padding: 40px;
+		line-height: 1.5;
+	}
+}
+
+.share-result {
+	width: 100%;
+	margin-top: 40px;
+}
+
+.result-fb, .result-tweet {
+	background: #3b5998;
+	padding: 13px 25px 15px 80px;
+	position: relative;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 1.2em;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 10px;
+
+	i {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		background: darken(#3b5998, 7%);
+		padding: 18px 20px;
+		border-radius: 5px 0 0 5px;
+		font-size: 1.1em;
+	}
+
+	&:hover {
+		background: lighten(#3b5998, 5%);
+	}
+
+	&:hover i {
+		background: darken(#3b5998, 2%);
+	}
+
+	@include bp800 {
+		margin-right: 20px;
+	}
+}
+
+.result-tweet {
+	background: #1da1f2;
+
+	i {
+		background: darken(#1da1f2, 7%);
+	}
+
+	&:hover {
+		background: lighten(#1da1f2, 5%);
+	}
+
+	&:hover i {
+		background: darken(#1da1f2, 2%);
+	}
+}
+
+.restart {
+	display: inline-block;
+	padding: 15px 25px 18px 80px;
+	background: $darkBlue;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 1.2em;
+	position: relative;
+	margin-top: 40px;
+
+	i {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		border-radius: 5px 0 0 5px;
+		padding: 18px 20px;
+		background: rgba(#000,.12);
+	}
+
+	&:hover {
+		background: lighten($darkBlue, 5%);
+	}
+
+	&:hover:before {
+		background: rgba(#000,.07);
+	}
+}
+
+
+
+
+
